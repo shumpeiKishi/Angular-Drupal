@@ -3,17 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
-import { PostComponent } from './post.component';
+import { ArticlesComponent } from './articles.component';
+import { ArticleComponent } from './article.component';
 import { BlogService } from './blog.service';
 
+import { AppRoutingModule } from './app-routing.module';
+
 @NgModule({
-  imports:      [
+  imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
    ],
   declarations: [
     AppComponent,
-    PostComponent
+    ArticlesComponent,
+    ArticleComponent
   ],
   providers: [BlogService],
   bootstrap:    [ AppComponent ]

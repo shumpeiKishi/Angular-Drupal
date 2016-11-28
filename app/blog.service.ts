@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Router }            from '@angular/router';
 
 import { Article } from './article';
 
@@ -21,6 +22,11 @@ export class BlogService {
       .toPromise()
       .then((response) => response.json() as Article[])
       .catch(this.handleError);
+  }
+
+  getArticle(id: number): Promise<Article> {
+    return this.getArticles()
+      .then(articles => { return articles[0]});
   }
 
   private handleError(error: any): Promise<any> {

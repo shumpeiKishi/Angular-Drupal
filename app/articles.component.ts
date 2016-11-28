@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Router }            from '@angular/router';
 
 import { Article } from './article';
 import { BlogService } from './blog.service';
 
 
 @Component({
-  selector: 'post-list',
+  selector: 'my-articles',
   template: `
     <div *ngFor="let article of articles">
-      <h3>{{ article.title[0].value }}</h3>
-      <div [innerHTML]="article.body[0].value">
-
-      </div>
+      <h3 [routerLink]="['/node', article.nid[0].value]">{{ article.title[0].value }}</h3>
     </div>
     `
 })
 
-export class PostComponent {
+export class ArticlesComponent {
 
   articles: Article[];
 
@@ -33,5 +31,4 @@ export class PostComponent {
   ngOnInit(): void {
     this.getArticles();
   }
-
 }

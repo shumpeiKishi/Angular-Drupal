@@ -1,4 +1,9 @@
 export class Article {
+  "nid": [
+      {
+      "value": number
+      }
+  ];
   "title": [
     {"value": string}
   ];
