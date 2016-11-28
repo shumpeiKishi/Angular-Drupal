@@ -10,9 +10,9 @@ import { BlogService } from './blog.service';
 @Component({
   selector: 'my-article',
   template: `
-  <div>
-    <pre>{{article.title | json }}</pre>
-
+  <div *ngIf="article">
+    <h2>{{article.title[0].value}}</h2>
+    <div [innerHTML]="article.body[0].value"></div>
   </div>
     `
 })
