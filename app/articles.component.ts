@@ -9,7 +9,11 @@ import { BlogService } from './blog.service';
   selector: 'my-articles',
   template: `
     <div *ngFor="let article of articles">
-      <h3 [routerLink]="['/node', article.nid[0].value]">{{ article.title[0].value }}</h3>
+      <h3>
+        <a [routerLink]="['/node', article.nid[0].value]">
+          {{ article.title[0].value }}
+        </a>
+      </h3>
     </div>
     `
 })

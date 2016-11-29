@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   selector: 'app-main',
   templateUrl: './app.component.html',
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  { title = 'Angular'; }

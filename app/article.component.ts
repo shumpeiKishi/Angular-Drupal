@@ -14,6 +14,9 @@ import { BlogService } from './blog.service';
     <h2>{{article.title[0].value}}</h2>
     <div [innerHTML]="article.body[0].value"></div>
   </div>
+  <div *ngIf="!article">
+    Loading ... <i class="fa fa-x4 fa-spinner"></i>
+  </div>
     `
 })
 export class ArticleComponent {
