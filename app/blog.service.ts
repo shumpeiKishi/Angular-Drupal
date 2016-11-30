@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Router }            from '@angular/router';
 
+import { Node } from './node';
 import { Article } from './article';
 import { Page } from './page';
 
@@ -19,25 +20,34 @@ export class BlogService {
     private http: Http
   ) {}
 
-  getNodes(type: string, id = 'all'): Promise<Article[]> {
+  getNodes(type: string, id = 'all'): Promise<Node[]> {
     let url = this.blogUrl + type + '/' + id;
     return this.http.get(url)
       .toPromise()
-      .then((response) => response.json() as Article[])
+      .then((response) => response.json() as Node[])
       .catch(this.handleError);
   }
 
-  getArticles(id = 'all'): Promise<Article[]> {
+  getNode(type: string, id = 'all'): Promise<Node> {
+    return this.getArticles(String(id))
+      .then(nodes => nodes[0] as Node);
+  }
+
+  getArticles(id = 'all'): Promise<Node[]> {
     return this.getNodes('article');
   }
 
-  getArticle(id: number): Promise<Article> {
+  getArticle(id: number): Promise<Node> {
     return this.getArticles(String(id))
-      .then(articles => articles[0] as Article);
+      .then(articles => articles[0] as Node);
   }
 
-  getPages(id = 'all'): Promise<Article[]> {
+  getPages(id = 'all'): Promise<Node[]> {
     return this.getNodes('page');
+  }
+
+  getMenuItems(id = 'all'): Promise<Node[]> {
+    return this.getPages();
   }
 
   private handleError(error: any): Promise<any> {

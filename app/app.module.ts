@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent }  from './app.component';
 import { ArticlesComponent } from './articles.component';
 import { ArticleComponent } from './article.component';
+import { MenuComponent } from './menu.component';
 import { BlogService } from './blog.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     ArticlesComponent,
-    ArticleComponent
+    ArticleComponent,
+    MenuComponent
   ],
   providers: [BlogService],
   bootstrap:    [ AppComponent ]
