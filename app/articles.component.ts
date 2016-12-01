@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
-import { Article } from './article';
+import { Node } from './node';
 import { BlogService } from './blog.service';
 
 
@@ -14,13 +14,14 @@ import { BlogService } from './blog.service';
           {{ article.title[0].value }}
         </a>
       </h3>
+      <p><i>{{ getDate(article.created[0].value) | date:'EEE' }}</i></p>
     </div>
     `
 })
 
 export class ArticlesComponent {
 
-  articles: Article[];
+  articles: Node[];
 
   constructor(
     private blogService: BlogService
@@ -28,8 +29,12 @@ export class ArticlesComponent {
 
   getArticles(): void {
     this.blogService
-      .getArticles()
-      .then(articles => this.articles = articles);
+      .getNodes('article')
+      .then(nodes => this.articles = nodes);
+  }
+
+  getDate(timestamp: string): Date {
+    return new Date(1000 * +timestamp);
   }
 
   ngOnInit(): void {

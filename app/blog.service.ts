@@ -3,7 +3,6 @@ import { Http, Headers } from '@angular/http';
 import { Router }            from '@angular/router';
 
 import { Node } from './node';
-import { Article } from './article';
 import { Page } from './page';
 
 import 'rxjs/add/operator/toPromise';
@@ -28,26 +27,14 @@ export class BlogService {
       .catch(this.handleError);
   }
 
-  getNode(type: string, id = 'all'): Promise<Node> {
-    return this.getArticles(String(id))
-      .then(nodes => nodes[0] as Node);
-  }
-
-  getArticles(id = 'all'): Promise<Node[]> {
-    return this.getNodes('article');
-  }
-
-  getArticle(id: number): Promise<Node> {
-    return this.getArticles(String(id))
-      .then(articles => articles[0] as Node);
-  }
-
-  getPages(id = 'all'): Promise<Node[]> {
-    return this.getNodes('page');
+  getNode(id = 'all'): Promise<Node> {
+    return this.getNodes('node', String(id))
+      .then(nodes => nodes[0] as Node)
+      .catch(this.handleError);
   }
 
   getMenuItems(id = 'all'): Promise<Node[]> {
-    return this.getPages();
+    return this.getNodes('menu');
   }
 
   private handleError(error: any): Promise<any> {

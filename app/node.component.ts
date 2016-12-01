@@ -4,23 +4,23 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 
-import { Article } from './article';
+import { Node } from './node';
 import { BlogService } from './blog.service';
 
 @Component({
-  selector: 'my-article',
+  selector: 'my-node',
   template: `
-  <div *ngIf="article">
-    <h2>{{article.title[0].value}}</h2>
-    <div [innerHTML]="article.body[0].value"></div>
+  <div *ngIf="node">
+    <h2>{{node.title[0].value}}</h2>
+    <div [innerHTML]="node.body[0].value"></div>
   </div>
-  <div *ngIf="!article">
+  <div *ngIf="!node">
     Loading ... <i class="fa fa-x4 fa-spinner"></i>
   </div>
     `
 })
-export class ArticleComponent {
-  article: Article;
+export class NodeComponent {
+  node: Node;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +30,7 @@ export class ArticleComponent {
 
   ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) => this.blogService.getArticle(+params['id']))
-      .subscribe(article => this.article = article);
+      .switchMap((params: Params) => this.blogService.getNode(params['id']))
+      .subscribe(node => this.node = node);
   }
 }

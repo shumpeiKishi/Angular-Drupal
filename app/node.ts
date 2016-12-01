@@ -4,9 +4,17 @@ export class Node {
       "value": number
       }
   ];
-  "title": [
-    {"value": string}
+  "created": [
+    {
+      "value": "1456024272"
+    }
   ];
-  "body": [{"value": string}
+  "title": [
+    {
+      "value": string
+    }
+  ];
+  "body": [
+    {"value": string}
   ]
 }
